@@ -6,3 +6,9 @@ export function fetchUsers(){
     payload: axios.get("http://localhost/blank/api/public/users")
     }
 }
+export function fetchUser(id){
+    return {
+        type:"FETCH_USER",
+    payload: axios.get("http://localhost/blank/api/public/user/"+id)
+    }
+}

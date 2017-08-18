@@ -1,24 +1,24 @@
 const initalState = {
     fetching: false,
     fetched: false,
-    user:[],
+    users:[],
     error:null,
     }
 export default function reducer(state=initalState, action){
         switch(action.type){
-        case "FETCH_USER_PENDING":{
+        case "FETCH_USERS_PENDING":{
     return {...state, fetching:true}
             break;
         }
-        case "FETCH_USER_REJECTED":{
+        case "FETCH_USERS_REJECTED":{
             return {...state, fetching:false, error:action.payload}
             break;
                 }
-                case "FETCH_USER_FULFILLED":{
+                case "FETCH_USERS_FULFILLED":{
                     return{...state, 
                         fetching:false,
                         fetched:true,
-                        user:action.payload.data,}
+                        users:action.payload.data,}
                     break;
                         }
                     

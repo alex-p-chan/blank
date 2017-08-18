@@ -1,27 +1,21 @@
 import React from "react"
-import {connect} from "react-redux"
-import {fetchUsers} from "../actions/userActions"
-@connect((store)=>{
-    return{
-users:store.users.users,
-usersFetched:store.users.fetched
-    };
-})
-
+import Header from "./header"
+import MainMenu from "./mainmenu"
+import Game from "./game"
+import Help from "./help"
+import GameSetup from "./gamesetup"
+import GameJoin from "./gamejoin"
+import { Switch, Route } from 'react-router-dom'
 export default class Layout extends React.Component{
-    fetchUsers(){
-        this.props.dispatch(fetchUsers())  
-    }
-    //componentWillMount(){
-   // this.props.dispatch(fetchUsers())
-//}
     render(){
-        const{ users}=this.props;
-        if (users.length==0)
-//        return <h1>{users["0"].userName }</h1>
-  return <button className='btn' onClick={this.fetchUsers.bind(this)}>load more</button>
-
-  const mappedUsers = users.map(user=><li key={user.userID}>{user.userName}</li>)
-return <ul>{mappedUsers}</ul>
+  return <layout><Header/>
+<div className='container-fluid text-center'>
+      <Switch>
+      <Route exact path='/' component={MainMenu}/>
+      <Route path='/game' component={Game}/>
+      <Route path='/help' component={Help}/>
+      <Route path='/join' component={GameJoin}/>
+      <Route path='/gamesetup' component={GameSetup}/>
+    </Switch></div></layout>
 }
 }
