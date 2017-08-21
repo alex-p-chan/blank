@@ -1,6 +1,11 @@
 
 $font-stack:    Helvetica, sans-serif;
 $primary-color: pink;
+$red: #ef2929;
+$green:#8ae234;
+html, body, #wrapper{
+  height: 100%;
+}
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
      -moz-border-radius: $radius;
@@ -8,7 +13,7 @@ $primary-color: pink;
           border-radius: $radius;
 }
 #mainMenu .btn{
-  margin:10px;
+  margin:10px 0px;
 }
 .booty{
   font: 100% $font-stack;
@@ -36,6 +41,9 @@ $primary-color: pink;
       background-color: #555;
       color: white;
       padding: 15px;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
     }
     
     /* On small screens, set height to 'auto' for sidenav and grid */
@@ -45,4 +53,29 @@ $primary-color: pink;
         padding: 15px;
       }
       .row.content {height:auto;} 
+    }
+    //GAME SETUP
+/*    #Category1 {
+      .rc-slider-track{
+      background-color:  $green;
+      }
+      .rc-slider-handle{
+        border-color:$green;
+      }
+    }*/
+    #Category2 
+    {.rc-slider-track{
+    background-color:  $red;
+    }
+    .rc-slider-handle{
+      border-color:$red;
+    }
+}
+    #Category3 {
+      .rc-slider-track{
+      background-color:  $green;
+      }
+      .rc-slider-handle{
+        border-color:$green;
+      }
     }

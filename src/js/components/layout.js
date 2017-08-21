@@ -9,7 +9,7 @@ import { Switch, Route } from 'react-router-dom'
 export default class Layout extends React.Component{
     render(){
   return <layout><Header/>
-<div className='container-fluid text-center'>
+<div className='container text-center'>
       <Switch>
       <Route exact path='/' component={MainMenu}/>
       <Route path='/game' component={Game}/>
