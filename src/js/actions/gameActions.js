@@ -7,24 +7,10 @@ export function setGameTypes(types){
     payload: types
     }
 }
-export function queueGame(payload){
-    return {
-        type:"FETCH_GAME",
-        payload: axios.post(APIPath+"/game/player/queue", payload)
-    }
-}
 export function setPlayerTotal(PlayersTotal){
     return {
         type:"SET_GAME_PLAYERSTOTAL",
         payload: PlayersTotal
-    }
-}
-export function setBlank(key, value){
-    return {
-        type:"SET_BLANK",
-        payload: {key:key,
-            value:value
-        }
     }
 }
 export function setPlayerName(PlayerName){
