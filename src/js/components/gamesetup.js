@@ -1,12 +1,11 @@
 import React from "react"
-import Slider, { createSliderWithTooltip } from 'rc-slider'
-
-import Tooltip from 'rc-tooltip'
 import {connect} from "react-redux"
-import 'rc-slider/assets/index.css'
 import {fetchQuestionTypes} from "../actions/typeActions"
-import {setPlayerNumber, setCardType, setCardTotal,setCompetitive,createGame} from "../actions/gameActions"
+import {setPlayerTotal, setPlayerName, setCardType, setCardTotal,setCompetitive,createGame} from "../actions/gameActions"
 import { Link } from 'react-router-dom'
+import Slider, { createSliderWithTooltip } from 'rc-slider'
+import Tooltip from 'rc-tooltip'
+import 'rc-slider/assets/index.css'
 
 function percentFormatter(v) {
   return `${Math.round((v*6.66))} %`;
@@ -31,14 +30,12 @@ const handle = (props) => {
   return{
 types:store.questionTypes.types,
 typesFetched:store.questionTypes.fetched,
-gameFetched:store.gameSetup.fetched,
-game:store.gameSetup.gameSetup,
+gameFetched:store.game.fetched,
+game:store.game.game,
 };
 })
 class SelectCategory extends React.Component {
-  componentWillMount(){
-    this.props.dispatch(fetchQuestionTypes())    
-}
+
 setCardTotal(value){
   this.props.dispatch(setCardTotal(this.props.game.types,this.props.OrderID, value))
 }
@@ -49,7 +46,7 @@ render() {
   const{ types, game, typesFetched}=this.props;
   const mappedTypes = types.map((type,i)=><option key={i} value={type.typeID}>{type.typeName} by {type.userName}</option>)
 return (
-<div className='Category'>
+<div className={`Category-${this.props.OrderID}`}>
 <select className="form-control" value={game.types[this.props.OrderID].typeID} onChange={this.setCardType.bind(this)}>{mappedTypes}</select>
     <SliderWithTooltip min={0} max={15} value={game.types[this.props.OrderID].cardsTotal}onChange={this.setCardTotal.bind(this)}  tipFormatter={percentFormatter} />
     <p>{typesFetched?types.find(x => x.typeID === game.types[this.props.OrderID].typeID.toString()).typeDescription:""}</p>
@@ -59,14 +56,21 @@ return (
 }
 @connect((store)=>{
   return{
-gameFetched:store.gameSetup.fetched,
-game:store.gameSetup.gameSetup,
+gameFetched:store.game.fetched,
+game:store.game.game,
 };
 })
 export default class Game extends React.Component{    
+  componentWillMount(){
+    this.props.dispatch(fetchQuestionTypes())
+}
   setPlayerTotal(value){
-    this.props.dispatch(setPlayerNumber(value));
+    this.props.dispatch(setPlayerTotal(value));
   }
+  setPlayerName(input){
+    this.props.dispatch(setPlayerName(input.target.value));
+  }
+
   setCompetitive(){
     this.props.dispatch(setCompetitive(!this.props.game.competitive));    
   }
@@ -76,7 +80,10 @@ export default class Game extends React.Component{
     render(){
       const{game}=this.props;
       return (
-  <div>
+  <div id='gameSetup'>
+    <div class='join-name-input'>
+<label>Your Display Name</label><input type="text" onChange={this.setPlayerName.bind(this)}/>
+</div>
     <p>Click slider bar to select value.</p>
     <p>Select Number of Players: {game.playersTotal}</p>
     <Slider min={1} max={8} value={game.playersTotal} handle={handle} onChange={this.setPlayerTotal.bind(this)}/>

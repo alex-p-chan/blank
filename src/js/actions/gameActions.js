@@ -7,11 +7,30 @@ export function setGameTypes(types){
     payload: types
     }
 }
-
-export function setPlayerNumber(PlayersTotal){
+export function queueGame(payload){
+    return {
+        type:"FETCH_GAME",
+        payload: axios.post(APIPath+"/game/player/queue", payload)
+    }
+}
+export function setPlayerTotal(PlayersTotal){
     return {
         type:"SET_GAME_PLAYERSTOTAL",
         payload: PlayersTotal
+    }
+}
+export function setBlank(key, value){
+    return {
+        type:"SET_BLANK",
+        payload: {key:key,
+            value:value
+        }
+    }
+}
+export function setPlayerName(PlayerName){
+    return {
+        type:"SET_PLAYER_NAME",
+        payload: PlayerName
     }
 }
 export function setCompetitive(payload){
@@ -24,7 +43,7 @@ export function createGame(payload){
     return {
         
         type:"SET_GAME",
-        payload: axios.post(APIPath+"/game/postGameData", payload)
+        payload: axios.post(APIPath+"/game/add", payload)
     }
 }
 

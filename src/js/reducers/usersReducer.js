@@ -4,6 +4,7 @@ const initalState = {
     users:[],
     error:null,
     }
+    
 export default function reducer(state=initalState, action){
         switch(action.type){
         case "FETCH_USERS_PENDING":{

@@ -3,6 +3,8 @@ $font-stack:    Helvetica, sans-serif;
 $primary-color: pink;
 $red: #ef2929;
 $green:#8ae234;
+$blue:#729fcf;
+
 html, body, #wrapper{
   height: 100%;
 }
@@ -19,6 +21,9 @@ html, body, #wrapper{
   font: 100% $font-stack;
   color: $primary-color;
   @include border-radius(10px);
+}
+.join-game-list{
+  display:block;
 }
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
@@ -63,7 +68,15 @@ html, body, #wrapper{
         border-color:$green;
       }
     }*/
-    #Category2 
+    #gameSetup .Category-0
+    {.rc-slider-track{
+    background-color:  $blue;
+    }
+    .rc-slider-handle{
+      border-color:$blue;
+    }
+}
+    #gameSetup .Category-1
     {.rc-slider-track{
     background-color:  $red;
     }
@@ -71,7 +84,7 @@ html, body, #wrapper{
       border-color:$red;
     }
 }
-    #Category3 {
+#gameSetup .Category-2 {
       .rc-slider-track{
       background-color:  $green;
       }
