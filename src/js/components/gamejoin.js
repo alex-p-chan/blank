@@ -8,6 +8,7 @@ import {setPlayerName} from "../actions/gameActions"
   return{
 gamesFetched:store.games.fetched,
 games:store.games.games,
+game:store.game.game,
 };
 })
 export default class JoinGame extends React.Component{
@@ -18,7 +19,7 @@ fetchGames(){
     this.props.dispatch(fetchOpenGames())  
 }
 joinGame(gameID){
-  this.props.dispatch(joinGame({gameID:gameID}))  
+  this.props.dispatch(joinGame({gameID:gameID,playerName:this.props.game.playerName}))  
 }
 setPlayerName(input){
   this.props.dispatch(setPlayerName(input.target.value));

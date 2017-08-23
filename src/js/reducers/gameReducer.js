@@ -133,6 +133,9 @@ export default function reducer(state = initalState, action) {
                     ...state.game,
                     competitive: action.payload.data.competitive,
                     playersTotal: action.payload.data.playersTotal,
+                    playerNumber: action.payload.data.playerNumber,
+                    gameID: action.payload.data.gameID,
+                    started: true,
                 }
             }
             break;
