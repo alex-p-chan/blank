@@ -8,7 +8,7 @@ import Tooltip from 'rc-tooltip'
 import 'rc-slider/assets/index.css'
 
 function percentFormatter(v) {
-  return `${Math.round((v*6.66))} %`;
+   return `${Math.round((v*6.66))} %`;
 }
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 const Handle = Slider.Handle;
@@ -40,9 +40,12 @@ setCardTotal(value){
   this.props.dispatch(setCardTotal(this.props.game.types,this.props.OrderID, value))
 }
 setCardType(select){
+  
   this.props.dispatch(setCardType(this.props.OrderID, parseInt(select.target.value)))
  }
-render() {
+
+ render() {
+
   const{ types, game, typesFetched}=this.props;
   const mappedTypes = types.map((type,i)=><option key={i} value={type.typeID}>{type.typeName} by {type.userName}</option>)
 return (

@@ -8,7 +8,7 @@ import GameJoin from "./gamejoin"
 import { Switch, Route } from 'react-router-dom'
 export default class Layout extends React.Component{
     render(){
-  return <layout><Header/>
+  return <layout><h1 class="text-center">BLANK</h1>
 <div className='container text-center'>
       <Switch>
       <Route exact path='/' component={MainMenu}/>

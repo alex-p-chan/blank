@@ -5,6 +5,7 @@ const initalState = {
     round: {
         gameID:0,
         playersReady: 0,
+        roundType:"",
         blank: "",
         image: "",
         cardID:0,
@@ -20,6 +21,16 @@ export default function reducer(state = initalState, action) {
                 round: {
                     ...state.round,
                     gameID: action.payload.data.gameID
+                },
+            }
+            break;
+        }
+        case "SET_GAMEIDS": {
+            return {
+                ...state,
+                round: {
+                    ...state.round,
+                    gameID: action.payload.gameID
                 },
             }
             break;
@@ -54,6 +65,8 @@ export default function reducer(state = initalState, action) {
         }
 
         case "FETCH_GAME_FULFILLED": {
+            if (action.payload.data.rejoin)
+                action.payload.data.playersReady=action.payload.data.totalPlayers
             return {
                 ...state,
                 fetching: false,
@@ -64,6 +77,7 @@ export default function reducer(state = initalState, action) {
                         blank: action.payload.data.blank,
                         playersReady:action.payload.data.playersReady,
                         cardID:action.payload.data.cardID,
+                        roundType:action.payload.data.roundType,
                     }
             }
             break;

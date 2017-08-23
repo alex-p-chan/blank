@@ -20,10 +20,10 @@ export default function reducer(state = initalState, action) {
         case "SET_GAME_FULFILLED": {
             return {
                 ...state,
-                started: true,
                 game: {
                     ...state.game,
-                    gameID: action.payload.data.gameID
+                    gameID: action.payload.data.gameID,
+                    started: true,
                 },
             }
             break;
@@ -38,10 +38,40 @@ export default function reducer(state = initalState, action) {
             }
             break;
         }
+        case "SET_GAMEIDS": {
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    playerName: action.payload.playerName,
+                    playerNumber: action.payload.playerNumber,
+                    gameID: action.payload.gameID,
+                },
+            }
+            break;
+        }
+        case "SET_GAME_STARTED": {
+            return {
+                ...state,
+                game: { ...state.game, started: action.payload },
+            }
+            break;
+        }
         case "SET_GAME_PLAYERSTOTAL": {
             return {
                 ...state,
                 game: { ...state.game, playersTotal: action.payload },
+            }
+            break;
+        }
+        case "FETCH_GAME_FULFILLED": {
+            if (action.payload.data.rejoin)
+            {return {
+                ...state,
+                game: { ...state.game, playersTotal: action.payload.data.totalPlayers, started:true, },
+            }}
+            else{
+                return state;
             }
             break;
         }

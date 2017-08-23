@@ -13,6 +13,18 @@ export function setPlayerTotal(PlayersTotal){
         payload: PlayersTotal
     }
 }
+export function setGameStarted(state){
+    return {
+        type:"SET_GAME_STARTED",
+        payload: state
+    }
+}
+export function setGameIDs(IDs){
+    return {
+        type:"SET_GAMEIDS",
+        payload: IDs
+    }
+}
 export function setPlayerName(PlayerName){
     return {
         type:"SET_PLAYER_NAME",
