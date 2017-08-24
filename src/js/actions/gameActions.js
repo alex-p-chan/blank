@@ -25,6 +25,12 @@ export function setGameIDs(IDs){
         payload: IDs
     }
 }
+export function setGameImages(images){
+    return {
+        type:"SET_GAME_SETTINGS_IMAGES",
+        payload: images
+    }
+}
 export function setPlayerName(PlayerName){
     return {
         type:"SET_PLAYER_NAME",

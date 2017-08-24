@@ -8,9 +8,21 @@ $blue:#729fcf;
   font-family: Chunkfive;
   src: url("../fonts/Chunkfive.otf") format("opentype");
 }
-
-html, body, #wrapper{
+html,body {
   height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body{
+  min-height: 100%;
+}
+#wrapper{
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 60px;
 }
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -22,6 +34,7 @@ html, body, #wrapper{
 
 #mainMenu .btn{
   margin:10px 0px;
+font-size: 20px;    
 }
 
 .booty{
@@ -35,9 +48,9 @@ html, body, #wrapper{
   font-size: 48px;
   text-align: center;
   width:100%; 
- 
-  
+  text-transform: uppercase; 
 }
+.round-img{width:100%}
 ::-webkit-input-placeholder { /* Chrome */
   color: #000;
   opacity: 1;  }

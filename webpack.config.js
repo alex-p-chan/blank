@@ -31,9 +31,9 @@ devServer:{
   new ExtractTextPlugin("style.css"),
     new HtmlWebpackPlugin({
       title: 'Blank',
-   //   minify: {
-     //     collapseWhitespace: true
-    //  },
+      minify: {
+          collapseWhitespace: true
+      },
       inject:true,
       hash:true,
       template: './src/ejs/index.ejs', // Load a custom template (ejs by default see the FAQ for details) 

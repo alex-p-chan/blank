@@ -10,7 +10,7 @@ const initalState = {
         playerName: "",
         gameID: 0,
         settings: {
-            imgOn: false,
+            images: false,
         },
     },
     error: null,
@@ -79,6 +79,16 @@ export default function reducer(state = initalState, action) {
             return {
                 ...state,
                 game: { ...state.game, types: action.payload },
+            }
+            break;
+        }
+        case "SET_GAME_SETTINGS_IMAGES": {
+            return {
+                ...state,
+                game: { ...state.game,
+                    settings:{...state.game.settings,
+                        images: action.payload
+                    }},
             }
             break;
         }

@@ -1,7 +1,16 @@
 import React from "react"
+import {connect} from "react-redux"
+import {setGameImages} from "../actions/gameActions"
 
+@connect((store)=>{
+  return{
+settings:store.game.game.settings,
+};
+})
 export default class Game extends React.Component{    
-
+  setImages(){
+    this.props.dispatch(setGameImages(!this.props.settings.images));    
+  }
     render(){
   return (<div id="help">
       <h1>How to Play and options</h1>
@@ -16,8 +25,8 @@ export default class Game extends React.Component{
   <li>The round is over and the group revels in their newfound wisdom as a new round with new questions begins.</li>
 </ul>
 
-<label className="radio-inline"><input type="radio" id="imgOn" name="imgView"/>Images On</label>
-<label className="radio-inline"><input type="radio" id="imgOff" name="imgView" onchange="imgOff()" checked=""/>Images Off</label>
+<button onClick={this.setImages.bind(this)}>Images {this.props.settings.images?"ON":"OFF"}</button>
+
 <div className="alert alert-danger">
 Different images will be shown depending on how players fill their BLANKs. This will increase loadtimes. If the resulting question is vulgar or offensive, sometimes these images can be distressing or offensive (but mostly just funny).
 </div>

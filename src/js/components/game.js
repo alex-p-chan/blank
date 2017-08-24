@@ -61,6 +61,7 @@ return false;
 @connect((store)=>{
   return{
 gameFetched:store.game.fetched,
+roundFetching:store.round.fetching,
 game:store.game.game,
 round:store.round.round
 };
@@ -80,11 +81,12 @@ timer() {
       this.props.dispatch(setGameIDs(rejoin))
     }
   }
+  if(!this.props.round.fetching)
     this.props.dispatch(queueGame(this.props.game)) 
   }
 }
 componentDidMount() {
-  this.intervalId = setInterval(this.timer.bind(this), 5000);
+  this.intervalId = setInterval(this.timer.bind(this), 3000);
 }
 componentWillUnmount(){
   clearInterval(this.intervalId);
@@ -113,6 +115,7 @@ endTurn(){
         blank.pop();
 return (<div>
 {round.playersReady!= game.playersTotal?<Loading />:<h1>{blank}</h1>}
+{round.roundType==="answer"&&game.settings.images?<img src={round.image} className="round-img"/>:null}
     <button className="btn btn-block btn-success"onClick={this.endTurn.bind(this)} disabled={round.playersReady!= game.playersTotal} >Submit</button>
   </div>)
 

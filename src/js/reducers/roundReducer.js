@@ -93,14 +93,19 @@ export default function reducer(state = initalState, action) {
             }
             break;
         }
-        case "END_TURN_FULFILLED": {
+        case "END_TURN_PENDING": {
             return {
                 ...state,
+                fetching:true,
                     round: {
                         ...state.round,
             playersReady:0
                 },
             }
+            break;
+        }
+        case "END_TURN_REJECTED": {
+            return { ...state, fetching: false, error: action.payload.data }
             break;
         }
         

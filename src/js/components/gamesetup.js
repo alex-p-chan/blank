@@ -85,7 +85,7 @@ export default class Game extends React.Component{
       return (
   <div id='gameSetup'>
     <div class='join-name-input'>
-<label>Your Display Name</label><input type="text" onChange={this.setPlayerName.bind(this)}/>
+<label>Your Display Name </label><input type="text" onChange={this.setPlayerName.bind(this)}/>
 </div>
     <p>Click slider bar to select value.</p>
     <p>Select Number of Players: {game.playersTotal}</p>

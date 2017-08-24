@@ -31,7 +31,7 @@ return (<div>
     <h1>Join a Game</h1>
 
     <div class='join-name-input'>
-    <label>Your Display Name</label><input type="text" onChange={this.setPlayerName.bind(this)}/>
+    <label>Your Display Name </label><input type="text" onChange={this.setPlayerName.bind(this)}/>
     </div>
     <button className='btn btn-default' onClick={this.fetchGames.bind(this)}>Refresh Game List</button>
 <div className="join-game-list">
