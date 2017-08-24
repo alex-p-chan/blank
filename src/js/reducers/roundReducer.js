@@ -5,6 +5,7 @@ const initalState = {
     round: {
         gameID:0,
         playersReady: 0,
+        playersNotReady:"",
         roundType:"",
         blank: "",
         image: "",
@@ -76,10 +77,27 @@ export default function reducer(state = initalState, action) {
                         image: action.payload.data.image,
                         blank: action.payload.data.blank,
                         playersReady:action.payload.data.playersReady,
+                        playersNotReady:action.payload.data.playersNotReady,
                         cardID:action.payload.data.cardID,
                         roundType:action.payload.data.roundType,
+                        scoreText: action.payload.data.scoreType,
+                        playerVoted:0,
                     }
             }
+            break;
+        }
+        //reset state for join game or gamesetup screens
+        case "FETCH_GAMES_FULFILLED":
+        case "FETCH_TYPES_FULFILLED":
+        return initalState
+        case "SET_PLAYER_VOTED": {
+            return {
+                ...state,
+                round: {
+                    ...state.round,
+                    playerVoted:action.payload
+            },
+        }
             break;
         }
         case "SET_BLANK": {

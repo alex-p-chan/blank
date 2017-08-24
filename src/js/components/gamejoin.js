@@ -26,12 +26,15 @@ setPlayerName(input){
 }
   render(){
     const{ games,gamesFetched}=this.props;
-    const mappedGames = games.map((game,i)=><Link to='/game'  className='btn btn-default' key={i} onClick={()=>this.joinGame(game.gameID)}>Join Game {game.gameID}</Link>)
+    const mappedGames = games.map((game,i)=><Link to='/game' disabled={this.props.game.playerName===""} className='btn btn-default' key={i} onClick={this.props.game.playerName===""?e => e.preventDefault():()=>this.joinGame(game.gameID)}>Join {game.playerName}'s Game</Link>)
 return (<div>
     <h1>Join a Game</h1>
+    <div className='form-group row game-setup-name'>
+          <label className="col-md-4 control-label">Enter your name to join a game</label>
+          <div className="col-md-8">
+            <input type="text" className="form-control text-center" onChange={this.setPlayerName.bind(this)} />
+          </div>
 
-    <div class='join-name-input'>
-    <label>Your Display Name </label><input type="text" onChange={this.setPlayerName.bind(this)}/>
     </div>
     <button className='btn btn-default' onClick={this.fetchGames.bind(this)}>Refresh Game List</button>
 <div className="join-game-list">

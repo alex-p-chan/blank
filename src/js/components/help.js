@@ -28,7 +28,7 @@ export default class Game extends React.Component{
 <button onClick={this.setImages.bind(this)}>Images {this.props.settings.images?"ON":"OFF"}</button>
 
 <div className="alert alert-danger">
-Different images will be shown depending on how players fill their BLANKs. This will increase loadtimes. If the resulting question is vulgar or offensive, sometimes these images can be distressing or offensive (but mostly just funny).
+Different images will be shown depending on how players fill their BLANKs. This will increase load times. If the resulting question is vulgar or offensive, sometimes these images can be distressing or offensive (but mostly just funny).
 </div>
       </div>
       )

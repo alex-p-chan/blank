@@ -7,7 +7,7 @@ export default class Layout extends React.Component{
   <div id='mainMenu'>
     <Link className='btn btn-success btn-block' to='/gamesetup'>New Game</Link>
     <Link to='/join' className='btn btn-primary btn-block'>Join Game</Link>
-    <Link to='/help' className='btn btn-default btn-block'>Rules and Options</Link>
+    <Link to='/help' className='btn btn-default btn-block'>Rules and Settings</Link>
 </div>)
 }
 }

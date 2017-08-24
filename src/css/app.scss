@@ -1,13 +1,12 @@
-
-$font-stack:    Helvetica, sans-serif;
-$primary-color: pink;
-$red: #ef2929;
-$green:#8ae234;
-$blue:#729fcf;
 @font-face {
   font-family: Chunkfive;
   src: url("../fonts/Chunkfive.otf") format("opentype");
 }
+$font-stack:   Chunkfive, Helvetica, sans-serif;
+$primary-color: pink;
+$red: #ef2929;
+$green:#8ae234;
+$blue:#729fcf;
 html,body {
   height: 100%;
 }
@@ -22,7 +21,7 @@ body{
 #wrapper{
   min-height: 100%;
   position: relative;
-  padding-bottom: 60px;
+  padding-bottom: 90px;
 }
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -36,11 +35,17 @@ body{
   margin:10px 0px;
 font-size: 20px;    
 }
-
-.booty{
-  font: 100% $font-stack;
-  color: $primary-color;
-  @include border-radius(10px);
+.game-blank{
+    display: block;
+    margin: auto;
+    text-align: center;
+    width: 90%;
+  }
+  .game-setup-name label{
+    font-size:18px;
+  }
+  a.disabled {
+    pointer-events: none !important;
 }
 .title{
   font-family: Chunkfive;
@@ -49,6 +54,7 @@ font-size: 20px;
   text-align: center;
   width:100%; 
   text-transform: uppercase; 
+  padding-top:10px;
 }
 .round-img{width:100%}
 ::-webkit-input-placeholder { /* Chrome */

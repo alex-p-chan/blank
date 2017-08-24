@@ -8,3 +8,5 @@ import { HashRouter as Router} from 'react-router-dom'
 const app=document.getElementById('app')
 ReactDOM.render(<Provider store={store}><Router>
     <Layout /></Router></Provider>, app);
+//Imgur client: ca15dd2403ec2ce
+//imgur secret:4dbe994bd3b10bc042bc6850b897bd11e223c3c7

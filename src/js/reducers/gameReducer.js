@@ -1,23 +1,31 @@
 const initalState = {
     fetching: false,
     fetched: false,
+    error: null,
     game: {
         types: [{ typeID: 1, cardsTotal: 5 }, { typeID: 2, cardsTotal: 5 }, { typeID: 3, cardsTotal: 5 }],
-        playersTotal: 5,
-        started: false,
-        competitive: true,
-        playerNumber: 1,
-        playerName: "",
         gameID: 0,
+        started: false,
+        playerNumber: 1,
+        playersTotal: 5,
+        competitive: true,
+        playerName: "",
         settings: {
             images: false,
         },
     },
-    error: null,
 }
 export default function reducer(state = initalState, action) {
     switch (action.type) {
         case "SET_GAME_FULFILLED": {
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+              }
+            setCookie("gameID", action.payload.data.gameID, 1);
+        
             return {
                 ...state,
                 game: {
@@ -63,6 +71,20 @@ export default function reducer(state = initalState, action) {
                 game: { ...state.game, playersTotal: action.payload },
             }
             break;
+        }
+        //reset state for join game or gamesetup screens
+        case "FETCH_TYPES_FULFILLED":
+        case "FETCH_GAMES_FULFILLED":
+        return{...state,
+            fetching: false,
+            fetched: false,
+            error: null,
+                    game: { ...state.game,
+                gameID: 0,
+                started: false,
+             },
+
+            
         }
         case "FETCH_GAME_FULFILLED": {
             if (action.payload.data.rejoin)
@@ -135,7 +157,15 @@ export default function reducer(state = initalState, action) {
             break;
         }
         case "JOIN_GAME_FULFILLED": {
-            return {
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+              }
+              setCookie("playerNumber", action.payload.playerNumber, 1);
+
+              return {
                 ...state,
                 fetching: false,
                 fetched: true,
