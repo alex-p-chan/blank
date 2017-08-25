@@ -1,9 +1,9 @@
 import React from "react"
-import FontAwesome from 'react-fontawesome'
 import { connect } from "react-redux"
 import { queueGame, setBlank, endTurn } from "../actions/roundActions"
-import { setGameIDs, setGameStarted } from "../actions/gameActions"
+import { setGameIDs, setGameStarted,setGameImages } from "../actions/gameActions"
 import { setVote } from "../actions/playersActions"
+import { Button, Card, Label, Header, Icon, Modal,Checkbox,Message} from 'semantic-ui-react'
 
 function getCookie(cname) {
   var name = cname + "=";
@@ -48,7 +48,43 @@ function formatBlank(array, fn) {
 class Loading extends React.Component {
   render() {
     return (
-      <div>{this.props.round.roundType===""||this.props.round.playersReady===0?<div>Loading</div>:<div>Waiting on {this.props.round.playersNotReady}</div>} <FontAwesome name='spinner' pulse /></div>
+      <div className="loading block">{this.props.round.roundType===""||this.props.round.playersReady===0?<div>Loading</div>:<div>Waiting on {this.props.round.playersNotReady}</div>}</div>
+    );
+  }
+}
+@connect((store)=>{
+  return{
+settings:store.game.game.settings,
+};
+})
+class HelpModal extends React.Component {
+  setImages(){
+    this.props.dispatch(setGameImages(!this.props.settings.images));    
+  }
+  render() {
+    return (
+         <Modal trigger={<Label corner='right' as='a' color='teal' icon='help circle' />} basic id="help-modal" closeIcon='close'>
+      <Header icon='help circle' content='How to Play and Options' />
+      <Modal.Content>
+<ul>
+  <li>BLANK is a social game designed to play with 3-8 people in person on mobile devices.</li>
+  <li>One player starts by Hosting a <b>New Game</b>, entering the number of players, while other players <b>Join Game</b> with the given Game ID. The game will begin when all players have joined.</li>
+  <li>Each person in the group fills in the <b>BLANK</b>/s on their question, taking care to be as insightful, imaginative and honest as they can.  Once they are done they hit <b>Submit Question</b>.</li>
+  <li>Once all the questions are in, one of the submitted questions will be drawn at random. The question is the same for all players.</li>
+  <li>The question is read aloud by anyone, and the group then takes turns responding, beginning with the person to the left of the reader, and continuing in a clockwise fashion.</li>
+  <li>Once the question has been answered by all members of the group, players hit the <b>Continue</b> button.</li>
+  <li>Once all players hit <b>Continue</b>, another question will be drawn at random and the person to the left of the previous reader reads the question, and players answer as they did previously. Play continues in a clockwise fashion until all the filled questions have been read and answered.</li>
+  <li>The round is over and the group revels in their newfound wisdom as a new round with new questions begins.</li>
+</ul>
+
+<Checkbox toggle size='large' inverted label={"Show Images"} onClick={this.setImages.bind(this)} checked={this.props.settings.images}/>
+
+<Message warning>
+Different images will be shown depending on how players fill their BLANKs. This will increase load times. If the resulting question is vulgar or offensive, sometimes these images can be distressing or offensive (but mostly just funny).
+</Message>
+      </Modal.Content>
+
+    </Modal>
     );
   }
 }
@@ -131,12 +167,14 @@ export default class Game extends React.Component {
       return [part, <input type="text" key={key} placeholder="BLANK" onChange={_this.setBlank.bind(_this, key)} class={`game-blank`} />];
     });
     blank.pop();
-    return (<div>
+    return (
+      <Card fluid id="game-card" >
+        <HelpModal/>
       {round.playersReady != game.playersTotal ? <Loading /> : <h1>{blank}</h1>}
       {round.roundType === "answer" && game.settings.images ? <img src={round.image} className="round-img" /> : null}
       {round.roundType === "answer"&&game.competitive?<VoteSection/>:null}
-      <button className="btn btn-block btn-success" onClick={this.endTurn.bind(this)} disabled={round.playersReady != game.playersTotal} >Submit</button>
-    </div>)
+      <Button basic color='green'className="block" onClick={this.endTurn.bind(this)} loading={round.playersReady != game.playersTotal}disabled={round.playersReady != game.playersTotal}>{round.roundType==="question"?"SUBMIT":"CONTINUE"}</Button>
+    </Card>)
 
   }
 }

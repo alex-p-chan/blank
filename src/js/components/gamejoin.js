@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom'
 import {connect} from "react-redux"
 import {fetchOpenGames,joinGame} from "../actions/gamesActions"
 import {setPlayerName} from "../actions/gameActions"
+import { Button, Input,Label} from 'semantic-ui-react'
 
 @connect((store)=>{
   return{
 gamesFetched:store.games.fetched,
+gamesFetching:store.games.fetching,
 games:store.games.games,
 game:store.game.game,
 };
@@ -25,18 +27,12 @@ setPlayerName(input){
   this.props.dispatch(setPlayerName(input.target.value));
 }
   render(){
-    const{ games,gamesFetched}=this.props;
-    const mappedGames = games.map((game,i)=><Link to='/game' disabled={this.props.game.playerName===""} className='btn btn-default' key={i} onClick={this.props.game.playerName===""?e => e.preventDefault():()=>this.joinGame(game.gameID)}>Join {game.playerName}'s Game</Link>)
+    const{ games}=this.props;
+    const mappedGames = games.map((game,i)=><Button as={Link} content={"Join"+ game.playerName+"'s Game"} icon='right arrow' labelPosition='right' to='/game' disabled={this.props.game.playerName===""} key={i} onClick={this.props.game.playerName===""?e => e.preventDefault():()=>this.joinGame(game.gameID)}/>)
 return (<div>
     <h1>Join a Game</h1>
-    <div className='form-group row game-setup-name'>
-          <label className="col-md-4 control-label">Enter your name to join a game</label>
-          <div className="col-md-8">
-            <input type="text" className="form-control text-center" onChange={this.setPlayerName.bind(this)} />
-          </div>
-
-    </div>
-    <button className='btn btn-default' onClick={this.fetchGames.bind(this)}>Refresh Game List</button>
+    <Input type="text" fluid className="text-center" placeholder="Enter your name to join a game" onChange={this.setPlayerName.bind(this)} />
+    <Button basic loading={this.props.gamesFetching} color='green' className="block" onClick={this.fetchGames.bind(this)}>Refresh Game List</Button>
 <div className="join-game-list">
 {mappedGames}
   </div>

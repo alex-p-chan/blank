@@ -21,7 +21,34 @@ body{
 #wrapper{
   min-height: 100%;
   position: relative;
-  padding-bottom: 90px;
+}
+h1{
+  text-align: center
+}
+.block{
+  display:block !important;
+  margin:auto !important;
+  text-align: center !important;
+}
+.loading{
+  font-size: 20px;padding: 20px;
+}
+#game-card{
+  text-align: center;
+  font-size: 16px;
+  
+}
+
+#game-card h1{
+  line-height: 55px;
+}
+
+#game-card h1{
+  line-height: 55px;
+}
+#game-card h1 input{
+      margin-top: 10px;
+    margin-bottom: 10px;
 }
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -31,7 +58,11 @@ body{
 }
 
 
-#mainMenu .btn{
+.text-center input{
+  text-align: center !important;
+}
+
+#mainMenu .button{
   margin:10px 0px;
 font-size: 20px;    
 }
@@ -91,13 +122,14 @@ font-size: 20px;
     }
     
     /* Set black background color, white text and some padding */
-    footer {
+    #footer {
       background-color: #555;
       color: white;
       padding: 15px;
       position: absolute;
       width: 100%;
       bottom: 0;
+      text-align: center;
     }
     
     /* On small screens, set height to 'auto' for sidenav and grid */
@@ -109,14 +141,14 @@ font-size: 20px;
       .row.content {height:auto;} 
     }
     //GAME SETUP
-/*    #Category1 {
-      .rc-slider-track{
-      background-color:  $green;
-      }
-      .rc-slider-handle{
-        border-color:$green;
-      }
-    }*/
+
+    #gameSetup{
+      font-size: 16px;
+      text-align: center;
+    }
+    #gameSetup > a.button{
+      margin-top: 15px;
+    }
     #gameSetup .Category-0
     {.rc-slider-track{
     background-color:  $blue;
@@ -141,3 +173,53 @@ font-size: 20px;
         border-color:$green;
       }
     }
+//help
+#help{
+  padding:0px 20px;
+}
+#help-modal label{color:#fff !important;}
+//loader
+
+/** add :empty to the loader's selectors **/
+
+.loader:empty,
+.loader:empty:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+.loader:empty {
+  margin: 60px auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-right: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-left: 1.1em solid #000000;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

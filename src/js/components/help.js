@@ -2,6 +2,8 @@ import React from "react"
 import {connect} from "react-redux"
 import {setGameImages} from "../actions/gameActions"
 
+import { Checkbox,Message} from 'semantic-ui-react'
+
 @connect((store)=>{
   return{
 settings:store.game.game.settings,
@@ -25,11 +27,11 @@ export default class Game extends React.Component{
   <li>The round is over and the group revels in their newfound wisdom as a new round with new questions begins.</li>
 </ul>
 
-<button onClick={this.setImages.bind(this)}>Images {this.props.settings.images?"ON":"OFF"}</button>
+<Checkbox toggle size='large' label={<label>Show Images</label>} onClick={this.setImages.bind(this)} checked={this.props.settings.images}/>
 
-<div className="alert alert-danger">
+<Message warning>
 Different images will be shown depending on how players fill their BLANKs. This will increase load times. If the resulting question is vulgar or offensive, sometimes these images can be distressing or offensive (but mostly just funny).
-</div>
+</Message>
       </div>
       )
 }

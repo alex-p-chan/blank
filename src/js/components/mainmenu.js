@@ -1,13 +1,13 @@
 import React from "react"
 import { Link } from 'react-router-dom'
-
+import {  Button} from 'semantic-ui-react'
 export default class Layout extends React.Component{
     render(){
   return (
   <div id='mainMenu'>
-    <Link className='btn btn-success btn-block' to='/gamesetup'>New Game</Link>
-    <Link to='/join' className='btn btn-primary btn-block'>Join Game</Link>
-    <Link to='/help' className='btn btn-default btn-block'>Rules and Settings</Link>
+    <Button as={Link} fluid color='green' to='/gamesetup'>New Game</Button>
+    <Button as={Link} fluid color='blue' to='/join'>Join Game</Button>
+    <Button as={Link} fluid color='teal' to='/help'>Rules and Settings</Button>
 </div>)
 }
 }
