@@ -85,10 +85,10 @@ export default class Game extends React.Component {
     const { game } = this.props;
     return (
       <div id='gameSetup'>
-            <Input type="text" fluid className="text-center" placeholder="Enter your name to host a game" onChange={this.setPlayerName.bind(this)} />
+            <Input  label={{ icon: 'asterisk' }} labelPosition='right corner' type="text" fluid className="text-center" placeholder="Enter your name to host a game" onChange={this.setPlayerName.bind(this)} />
         <Segment raised>
         <h3>Select Number of Players: {game.playersTotal}</h3>
-        <p>Click slider bar to change a value</p>
+        <p>Drag slider bar to change a value</p>
         <Slider min={1} max={8} value={game.playersTotal} handle={handle} onChange={this.setPlayerTotal.bind(this)} />
         </Segment>
         <h3>Select Question Sets and Distribution</h3>

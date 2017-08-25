@@ -21,6 +21,7 @@ body{
 #wrapper{
   min-height: 100%;
   position: relative;
+  padding-bottom:90px;
 }
 h1{
   text-align: center
@@ -105,6 +106,9 @@ font-size: 20px;
 .join-game-list{
   display:block;
 }
+#join > div.ui.fluid.input.text-center{
+  margin-bottom: 15px;
+}
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
@@ -122,7 +126,7 @@ font-size: 20px;
     }
     
     /* Set black background color, white text and some padding */
-    #footer {
+    footer {
       background-color: #555;
       color: white;
       padding: 15px;
@@ -174,6 +178,9 @@ font-size: 20px;
       }
     }
 //help
+#settings{
+  text-align: center;
+}
 #help{
   padding:0px 20px;
 }
