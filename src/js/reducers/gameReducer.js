@@ -166,7 +166,7 @@ export default function reducer(state = initalState, action) {
                 var expires = "expires=" + d.toUTCString();
                 document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
               }
-              setCookie("playerNumber", action.payload.playerNumber, 1);
+              setCookie("playerNumber", action.payload.data.playerNumber, 1);
 
               return {
                 ...state,
