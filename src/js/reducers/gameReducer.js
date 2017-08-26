@@ -8,7 +8,7 @@ const initalState = {
         started: false,
         playerNumber: 1,
         playersTotal: 5,
-        competitive: true,
+        competitive: false,
         playerName: "",
         settings: {
             images: false,
@@ -88,9 +88,12 @@ export default function reducer(state = initalState, action) {
         }
         case "FETCH_GAME_FULFILLED": {
             if (action.payload.data.rejoin)
-            {return {
+            {
+               const competitive=action.payload.data.gameMode?true:false;
+                return {
                 ...state,
-                game: { ...state.game, playersTotal: action.payload.data.totalPlayers, started:true, },
+                game: { ...state.game, playersTotal: action.payload.data.playersTotal, started:true,
+                    competitive: competitive},
             }}
             else{
                 return state;

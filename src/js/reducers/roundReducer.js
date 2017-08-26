@@ -67,7 +67,7 @@ export default function reducer(state = initalState, action) {
 
         case "FETCH_GAME_FULFILLED": {
             if (action.payload.data.rejoin)
-                action.payload.data.playersReady=action.payload.data.totalPlayers
+                action.payload.data.playersReady=action.payload.data.playersTotal
             return {
                 ...state,
                 fetching: false,

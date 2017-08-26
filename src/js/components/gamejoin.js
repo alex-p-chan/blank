@@ -28,7 +28,7 @@ setPlayerName(input){
 }
   render(){
     const{ games}=this.props;
-    const mappedGames = games.map((game,i)=><Button as={Link} content={"Join"+ game.playerName+"'s Game"} icon='right arrow' labelPosition='right' to='/game' disabled={this.props.game.playerName===""} key={i} onClick={this.props.game.playerName===""?e => e.preventDefault():()=>this.joinGame(game.gameID)}/>)
+    const mappedGames = games.map((game,i)=><Button as={Link} content={"Join "+ game.playerName+"'s Game"} icon='right arrow' labelPosition='right' to='/game' disabled={this.props.game.playerName===""} key={i} onClick={this.props.game.playerName===""?e => e.preventDefault():()=>this.joinGame(game.gameID)}/>)
 return (<div id="join">
     <h1>Join a Game</h1>
     <Input  label={{ icon: 'asterisk' }}
