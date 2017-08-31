@@ -7,7 +7,7 @@ export default class Layout extends React.Component{
   <div id='mainMenu'>
     <Button as={Link} fluid color='green' to='/gamesetup'>New Game</Button>
     <Button as={Link} fluid color='blue' to='/join'>Join Game</Button>
-    <Button as={Link} fluid color='teal' to='/help'>Rules and Settings</Button>
+    <Button as={Link} fluid color='teal' to='/help'>How to Play</Button>
 </div>)
 }
 }

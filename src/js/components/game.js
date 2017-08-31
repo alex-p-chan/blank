@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { queueGame, setBlank, endTurn } from "../actions/roundActions"
 import { setGameIDs, setGameStarted,setGameImages } from "../actions/gameActions"
 import { setVote } from "../actions/playersActions"
-import { Button, Card, Label, Header, Icon, Modal,Checkbox,Message} from 'semantic-ui-react'
+import { Button, Segment, Label, Header, Icon, Modal,Checkbox,Message,Popup,Container} from 'semantic-ui-react'
 import HelpText from "./helptext"
 
 function getCookie(cname) {
@@ -53,13 +53,26 @@ class Loading extends React.Component {
     );
   }
 }
+@connect((store) => {
+  return {
+    type: store.round.round.cardType,
+  };
+})
+class TypePopup extends React.Component {
+    render() {
+      return (
+           <Popup trigger={ <Label as='a' color={this.props.type.color} ribbon>{this.props.type.name}</Label>} content={this.props.type.description} />
+      );
+    }
+  }
+
 
 class HelpModal extends React.Component {
 
   render() {
     return (
          <Modal trigger={<Label corner='right' as='a' color='teal' icon='help circle' />} basic id="help-modal" closeIcon='close'>
-      <Header icon='help circle' content='How to Play and Options' />
+      <Header icon='help circle' content='How to Play and Settings' />
       <Modal.Content>
       <HelpText />
       </Modal.Content>
@@ -84,7 +97,7 @@ class VoteSection extends React.Component {
   render() {
     var _this = this;    
     return (
-      <div><p>{this.props.round.scoreText}</p>
+      <div><p>{this.props.round.type.scoreText}</p>
       {this.props.players.map(player=><div key={player.playerNumber}>
         <input disabled={this.props.game.playerNumber===player.playerNumber} value={player.playerNumber} name="votePlayer"type="radio" onChange={this.setVotedPlayer.bind(this)}/>
         {player.playerName} - {player.playerScore}
@@ -148,13 +161,15 @@ export default class Game extends React.Component {
     });
     blank.pop();
     return (
-      <Card fluid id="game-card" >
-        <HelpModal/>
+      <Container>
+      <Segment raised fluid id="game-card" >
+      <HelpModal/>
+        <TypePopup/>
       {round.playersReady != game.playersTotal ? <Loading /> : <h1>{blank}</h1>}
       {round.roundType === "answer" && game.settings.images ? <img src={round.image} className="round-img" /> : null}
       {round.roundType === "answer"&&game.competitive?<VoteSection/>:null}
       <Button basic color='green'className="block" onClick={this.endTurn.bind(this)} loading={round.playersReady != game.playersTotal}disabled={round.playersReady != game.playersTotal}>{round.roundType==="question"?"Submit Question":"Continue"}</Button>
-    </Card>)
-
+    </Segment>
+    </Container>)
   }
 }

@@ -43,6 +43,13 @@ export function setCompetitive(payload){
         payload: payload
     }
 }
+export function setNoQuestions(payload){
+    return {
+        type:"SET_GAME_NO_QUESTIONS",
+        payload: payload
+    }
+}
+
 export function createGame(payload){
     function setCookie(cname, cvalue, exdays) {
         var d = new Date();

@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { fetchQuestionTypes } from "../actions/typeActions"
-import { setPlayerTotal, setPlayerName, setCardType, setCardTotal, setCompetitive, createGame } from "../actions/gameActions"
+import { setPlayerTotal, setPlayerName, setCardType, setCardTotal, setCompetitive, createGame,setNoQuestions } from "../actions/gameActions"
 import { Link } from 'react-router-dom'
 import Slider, { createSliderWithTooltip } from 'rc-slider'
 import { Button, Input, Segment,Dropdown,Checkbox,Label} from 'semantic-ui-react'
@@ -78,6 +78,9 @@ export default class Game extends React.Component {
   setCompetitive() {
     this.props.dispatch(setCompetitive(!this.props.game.competitive));
   }
+  setNoQuestions() {
+    this.props.dispatch(setNoQuestions(!this.props.game.noQuestions));
+  }
   createGame() {
     this.props.dispatch(createGame(this.props.game));
   }
@@ -96,6 +99,7 @@ export default class Game extends React.Component {
         <SelectCategory OrderID={1} />
         <SelectCategory OrderID={2} />
         <Checkbox toggle size='large' label={<label>Competitive Mode</label>} onClick={this.setCompetitive.bind(this)} checked={game.competitive}/>
+        <Checkbox toggle size='large' label={<label>Answers Only (Fills Blanks Randomly)</label>} onClick={this.setNoQuestions.bind(this)} checked={game.noQuestions}/>
         <Button as={Link} disabled={game.playerName === ""} fluid color="green" to='/game' onClick={game.playerName === "" ? e => e.preventDefault() : this.createGame.bind(this)}>CREATE GAME</Button>
       </div>
     )

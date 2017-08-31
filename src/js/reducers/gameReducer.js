@@ -9,6 +9,7 @@ const initalState = {
         playerNumber: 1,
         playersTotal: 5,
         competitive: false,
+        noQuestions: false,
         playerName: "",
         settings: {
             images: false,
@@ -123,6 +124,16 @@ export default function reducer(state = initalState, action) {
                 game: {
                     ...state.game,
                     competitive: action.payload,
+                },
+            }
+            break;
+        }
+        case "SET_GAME_NO_QUESTIONS": {
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    noQuestions: action.payload,
                 },
             }
             break;

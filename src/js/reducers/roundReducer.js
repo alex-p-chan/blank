@@ -9,8 +9,8 @@ const initalState = {
         roundType:"",
         blank: "",
         image: "",
-        cardID:0,
         playerVoted:0,
+        cardType:{},
         answers: [{key:0,value:""}, {key:1,value:""}, {key:2,value:""}],
     },
 }
@@ -78,9 +78,8 @@ export default function reducer(state = initalState, action) {
                         blank: action.payload.data.blank,
                         playersReady:action.payload.data.playersReady,
                         playersNotReady:action.payload.data.playersNotReady,
-                        cardID:action.payload.data.cardID,
                         roundType:action.payload.data.roundType,
-                        scoreText: action.payload.data.scoreType,
+                        cardType:action.payload.data.type,
                         playerVoted:0,
                     }
             }
